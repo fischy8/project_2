@@ -7,6 +7,8 @@
 
 #include "date_and_time.h"
 
+#include "display.h"
+
 //=====[Declaration of private defines]========================================
 
 #define MATRIX_KEYPAD_NUMBER_OF_ROWS    4
