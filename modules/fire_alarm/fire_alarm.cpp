@@ -42,7 +42,7 @@ static bool overTemperatureDetectorState = OFF;
 //=====[Declarations (prototypes) of private functions]========================
 
 static void fireAlarmActivationUpdate();
-static void fireAlarmDeactivationUpdate();
+static void gateStatusUpdate();
 static int fireAlarmStrobeTime();
 
 //=====[Implementations of public functions]===================================
@@ -60,7 +60,7 @@ void fireAlarmInit()
 void fireAlarmUpdate()
 {
     fireAlarmActivationUpdate();
-    fireAlarmDeactivationUpdate();
+    gateStatusUpdate();
     sirenUpdate( fireAlarmStrobeTime() );
     strobeLightUpdate( fireAlarmStrobeTime() );    
 }
@@ -125,7 +125,7 @@ static void fireAlarmActivationUpdate()
     }
 }
 
-static void fireAlarmDeactivationUpdate()
+static void gateStatusUpdate()
 {
     if ( codeMatchFrom(CODE_KEYPAD) ||
             codeMatchFrom(CODE_PC_SERIAL) ) {
