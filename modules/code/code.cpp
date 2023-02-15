@@ -35,6 +35,11 @@ static void codeDeactivate();
 
 //=====[Implementations of public functions]===================================
 
+char* getCode()
+{
+    return codeSequence;
+}
+
 void codeWrite( char* newCodeSequence )
 {
     int i;
@@ -80,7 +85,7 @@ bool codeMatchFrom( codeOrigin_t codeOrigin )
         break;
     }
 
-    if ( numberOfIncorrectCodes >= 5 ) {
+    if ( numberOfIncorrectCodes >= 3 ) {
         systemBlockedStateWrite(ON);
     }
 
