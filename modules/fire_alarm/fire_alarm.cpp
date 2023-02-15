@@ -13,6 +13,7 @@
 #include "temperature_sensor.h"
 #include "gas_sensor.h"
 #include "matrix_keypad.h"
+#include "gate.h"
 
 //=====[Declaration of private defines]========================================
 
@@ -42,7 +43,6 @@ static bool overTemperatureDetectorState = OFF;
 
 static void fireAlarmActivationUpdate();
 static void fireAlarmDeactivationUpdate();
-static void fireAlarmDeactivate();
 static int fireAlarmStrobeTime();
 
 //=====[Implementations of public functions]===================================
@@ -85,6 +85,14 @@ bool overTemperatureDetectedRead()
     return overTemperatureDetected;
 }
 
+void fireAlarmDeactivate()
+{
+    sirenStateWrite(OFF);
+    strobeLightStateWrite(OFF);
+    overTemperatureDetected = OFF;
+    gasDetected             = OFF;    
+}
+
 //=====[Implementations of private functions]==================================
 
 static void fireAlarmActivationUpdate()
@@ -119,20 +127,10 @@ static void fireAlarmActivationUpdate()
 
 static void fireAlarmDeactivationUpdate()
 {
-    if ( sirenStateRead() ) {
-        if ( codeMatchFrom(CODE_KEYPAD) ||
-             codeMatchFrom(CODE_PC_SERIAL) ) {
-            fireAlarmDeactivate();
-        }
+    if ( codeMatchFrom(CODE_KEYPAD) ||
+            codeMatchFrom(CODE_PC_SERIAL) ) {
+        gateOpenClose();
     }
-}
-
-static void fireAlarmDeactivate()
-{
-    sirenStateWrite(OFF);
-    strobeLightStateWrite(OFF);
-    overTemperatureDetected = OFF;
-    gasDetected             = OFF;    
 }
 
 static int fireAlarmStrobeTime()
