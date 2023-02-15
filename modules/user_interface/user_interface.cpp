@@ -77,6 +77,8 @@ void incorrectCodeStateWrite( bool state )
         clearDisplay();
         displayCharPositionWrite ( 0,0 );
         displayStringWrite( "Incorrect code" );
+        displayCharPositionWrite ( 0,1 );
+        displayStringWrite( "Press ##" );
     }
 }
 
