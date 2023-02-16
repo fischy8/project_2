@@ -161,9 +161,8 @@ static void pcSerialComCommandUpdate( char receivedChar )
         case '1': commandShowCurrentAlarmState(); break;
         case '2': commandShowCurrentGasDetectorState(); break;
         case '3': commandShowCurrentOverTemperatureDetectorState(); break;
-        case '4': commandEnterCodeSequence(); break;
+        case '4': commandTurnOffAlarm(); break;
         case '5': commandEnterNewCode(); break;
-        case '6': commandTurnOffAlarm(); break;
         case 'c': case 'C': commandShowCurrentTemperatureInCelsius(); break;
         case 'f': case 'F': commandShowCurrentTemperatureInFahrenheit(); break;
         case 's': case 'S': commandSetDateAndTime(); break;
@@ -180,9 +179,8 @@ static void availableCommands()
     pcSerialComStringWrite( "Press '1' to get the alarm state\r\n" );
     pcSerialComStringWrite( "Press '2' to get the gas detector state\r\n" );
     pcSerialComStringWrite( "Press '3' to get the over temperature detector state\r\n" );
-    pcSerialComStringWrite( "Press '4' to enter the code to deactivate the alarm\r\n" );
-    pcSerialComStringWrite( "Press '5' to enter a new code to deactivate the alarm\r\n" );
-    pcSerialComStringWrite( "Press '6' to deactivate the alarm\r\n" );
+    pcSerialComStringWrite( "Press '4' to deactivate the alarm\r\n" );
+    pcSerialComStringWrite( "Press '5' to enter a new code to open the gate\r\n" );
     pcSerialComStringWrite( "Press 'f' or 'F' to get lm35 reading in Fahrenheit\r\n" );
     pcSerialComStringWrite( "Press 'c' or 'C' to get lm35 reading in Celsius\r\n" );
     pcSerialComStringWrite( "Press 's' or 'S' to set the date and time\r\n" );
